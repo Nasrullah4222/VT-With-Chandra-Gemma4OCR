@@ -1,7 +1,18 @@
-const STORAGE_KEY = "gemma_extracted_documents";
+const STORAGE_KEY = "chandraocr_extracted_documents";
+const LEGACY_STORAGE_KEY = "gemma_extracted_documents";
+
+const migrateLegacyDocuments = () => {
+  if (typeof window === "undefined") return;
+  const legacyDocuments = localStorage.getItem(LEGACY_STORAGE_KEY);
+  if (legacyDocuments && !localStorage.getItem(STORAGE_KEY)) {
+    localStorage.setItem(STORAGE_KEY, legacyDocuments);
+  }
+  localStorage.removeItem(LEGACY_STORAGE_KEY);
+};
 export const getDocumentsFromStorage = () => {
   if (typeof window === "undefined") return [];
   try {
+    migrateLegacyDocuments();
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : [];
   } catch (err) {

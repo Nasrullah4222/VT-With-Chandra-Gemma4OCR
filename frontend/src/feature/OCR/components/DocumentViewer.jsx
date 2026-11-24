@@ -130,7 +130,7 @@ export const DocumentViewer = ({ doc, onClose, onReTextize }) => {
             <button
               onClick={onReTextize}
               className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
-              title="Re-run Gemma Textizer"
+              title="Re-run ChandraOCR 2"
             >
               <RefreshCw className="w-4 h-4" />
             </button>
@@ -231,7 +231,7 @@ export const DocumentViewer = ({ doc, onClose, onReTextize }) => {
               <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-between font-mono text-xs text-zinc-400">
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#4F46E5]" />
-                  <span>Gemma 4 31B Vision Bilingual Extraction</span>
+                  <span>ChandraOCR 2 Bilingual Extraction</span>
                 </div>
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px]">
                   Handwritten OCR Active
@@ -281,7 +281,7 @@ export const DocumentViewer = ({ doc, onClose, onReTextize }) => {
             <div className="p-6 rounded-2xl bg-zinc-900/80 border border-white/10 font-mono text-xs overflow-x-auto shadow-2xl">
               <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10 text-zinc-400 text-[11px]">
                 <span className="text-emerald-400">
-                  Gemma 4 31B Strict JSON Payload
+                  ChandraOCR 2 Strict JSON Payload
                 </span>
                 <button
                   onClick={() => handleCopy(jsonDisplay)}
@@ -328,7 +328,7 @@ export const DocumentViewer = ({ doc, onClose, onReTextize }) => {
             <div className="space-y-4 font-sans">
               <div className="flex items-center gap-2 text-[#4F46E5] font-semibold text-sm font-mono">
                 <Sparkles className="w-4 h-4" />
-                <span>Gemma 4 31B Executive Summary</span>
+                <span>ChandraOCR 2 Executive Summary</span>
               </div>
               <p className="text-zinc-200 text-base leading-relaxed bg-[#4F46E5]/10 p-6 rounded-2xl border border-[#4F46E5]/20">
                 {doc.summary || "No summary generated for this document."}

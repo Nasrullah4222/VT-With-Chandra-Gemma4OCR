@@ -17,7 +17,7 @@ export const OfflineIndicator = ({ isOffline }) => {
       ) : (
         <>
           <Wifi className="w-3 h-3 text-emerald-400" />
-          <span>Gemma Online</span>
+          <span>ChandraOCR 2 Online</span>
         </>
       )}
     </div>

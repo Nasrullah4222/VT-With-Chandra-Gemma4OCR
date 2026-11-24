@@ -1,6 +1,6 @@
 import { env } from "../config/env.js";
 
-export const ENGLISH_MODEL_LABEL = "English handwritten OCR (Modal)";
+export const ENGLISH_MODEL_LABEL = "ChandraOCR 2";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const MAX_BYTES = 15 * 1024 * 1024;

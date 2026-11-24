@@ -21,7 +21,7 @@ export const ProcessingOverlay = ({ fileName, fileSize }) => {
       <div className="space-y-2">
         <div className="flex items-center justify-center gap-2 text-xs font-mono text-[#4F46E5] uppercase tracking-wider">
           <Languages className="w-4 h-4" />
-          <span>Gemma 4 31B Vision OCR</span>
+          <span>ChandraOCR 2 OCR</span>
         </div>
         <h3 className="text-lg font-semibold text-white tracking-wide">
           Extracting Handwritten Passages...

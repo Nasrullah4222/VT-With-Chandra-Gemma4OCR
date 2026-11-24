@@ -7,7 +7,7 @@ async function startServer() {
   await seedPostsIfEmpty();
   app.listen(env.PORT, () => {
     console.log(
-      `Gemma Document Textizer backend running on http://localhost:${env.PORT}`,
+      `ChandraOCR 2 backend running on http://localhost:${env.PORT}`,
     );
   });
 }

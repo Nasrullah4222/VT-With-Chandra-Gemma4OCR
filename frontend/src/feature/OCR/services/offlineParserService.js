@@ -25,13 +25,13 @@ export const parseDocumentOffline = async (file, mode = "bangla") => {
     fileType.startsWith("image/") ||
     ["png", "jpg", "jpeg", "webp", "gif", "bmp"].includes(ext)
   ) {
-    text = `[Image Document: ${fileName}]\nFormat: ${fileType || ext}\nNote: Connect online to process image with Gemma 4 31B Vision model.`;
+    text = `[Image Document: ${fileName}]\nFormat: ${fileType || ext}\nNote: Connect online to process image with ChandraOCR 2.`;
     detectedType = "Image Document";
   } else if (fileType.includes("pdf") || ext === "pdf") {
-    text = `[PDF Document: ${fileName}]\nNote: Connect online for full Gemma 4 31B Vision PDF textization.`;
+    text = `[PDF Document: ${fileName}]\nNote: Connect online for full ChandraOCR 2 PDF textization.`;
     detectedType = "PDF Document";
   } else {
-    text = `[Binary Document: ${fileName}]\nFormat: ${fileType || ext}\nNote: Connect online for deep Gemma 4 31B Vision extraction.`;
+    text = `[Binary Document: ${fileName}]\nFormat: ${fileType || ext}\nNote: Connect online for deep ChandraOCR 2 extraction.`;
     detectedType = "Binary File";
   }
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;

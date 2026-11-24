@@ -3,6 +3,6 @@ export function getHealth(req, res) {
   res.json({
     status: "ok",
     model: env.HF_MODEL,
-    provider: "Hugging Face",
+    provider: "ChandraOCR 2",
   });
 }

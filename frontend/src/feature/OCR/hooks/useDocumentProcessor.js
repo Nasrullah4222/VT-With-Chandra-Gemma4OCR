@@ -13,7 +13,7 @@ export function useDocumentProcessor({ isOffline, onDocumentReady, mode = "bangl
         const doc = await parseDocumentOffline(file, mode);
         onDocumentReady(doc);
       } else {
-        // Try server API textization (HuggingFace Gemma 4 31B / Gemini Engine)
+        // Try server API textization with ChandraOCR 2
         let base64Data;
         let textContent;
         // Check if file is small text/code or binary
@@ -74,7 +74,7 @@ export function useDocumentProcessor({ isOffline, onDocumentReady, mode = "bangl
             structuredData: data.structuredData,
             rawJson: data.rawJson,
             metadata: data.metadata,
-            modelUsed: data.modelUsed || "Gemma 4 31B Vision Engine",
+            modelUsed: data.modelUsed || "ChandraOCR 2",
             processedAt: new Date().toISOString(),
             isOffline: false,
           };

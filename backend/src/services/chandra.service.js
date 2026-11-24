@@ -1,6 +1,6 @@
 import { env } from "../config/env.js";
 
-export const CHANDRA_MODEL_LABEL = "Chandra OCR 2 + LoRA (Bangla handwriting)";
+export const CHANDRA_MODEL_LABEL = "ChandraOCR 2";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const MAX_BYTES = 15 * 1024 * 1024;
