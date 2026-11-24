@@ -1,22 +1,26 @@
 import express from "express";
 import { corsMiddleware } from "./middleware/cors.middleware.js";
 import { errorHandler } from "./middleware/errorHandler.middleware.js";
-import healthRoutes from "./routes/health.routes.js";
-import textizeRoutes from "./routes/textize.routes.js";
-import documentRoutes from "./routes/document.routes.js";
-import postRoutes from "./routes/post.routes.js";
 import banglaTextizeRoutes from "./routes/bangla.textize.routes.js";
+import documentRoutes from "./routes/document.routes.js";
 import englishTextizeRoutes from "./routes/english.textize.routes.js";
+import healthRoutes from "./routes/health.routes.js";
+import postRoutes from "./routes/post.routes.js";
+
 const app = express();
+
 app.use(corsMiddleware);
+
 // Increase payload limit for base64 documents/images
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+
 app.use("/api", healthRoutes);
-app.use("/api", textizeRoutes);
 app.use("/api", documentRoutes);
 app.use("/api", postRoutes);
 app.use("/api", banglaTextizeRoutes);
 app.use("/api", englishTextizeRoutes);
+
 app.use(errorHandler);
+
 export default app;

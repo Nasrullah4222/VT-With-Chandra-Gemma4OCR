@@ -3,6 +3,7 @@ import { env } from "../config/env.js";
 
 const allowedOrigins = env.FRONTEND_URL.split(",")
   .map((origin) => origin.trim())
+  .map((origin) => origin.replace(/\/+$/, ""))
   .filter(Boolean);
 
 /**

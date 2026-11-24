@@ -5,11 +5,25 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
  */
 export async function textizeDocument(payload, mode = "bangla") {
   const endpoint = mode === "english" ? "textize/english" : "textize/bangla";
-  const res = await fetch(`${API_URL}/api/${endpoint}`, {
+  const url = `${API_URL}/api/${endpoint}`;
+  console.log("OCR API request:", {
+    url,
+    mode,
+    fileName: payload.fileName,
+    fileType: payload.fileType,
+    fileSize: payload.fileSize,
+  });
+  const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  const data = await res.json();
+  let data;
+  try {
+    data = await res.json();
+  } catch {
+    data = { success: false, error: `Backend returned HTTP ${res.status} with a non-JSON response.` };
+  }
+  console.log("OCR API response:", res.status, data);
   return { ok: res.ok, data };
 }

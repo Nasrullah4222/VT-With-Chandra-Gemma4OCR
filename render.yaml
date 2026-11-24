@@ -18,3 +18,13 @@ services:
         sync: false
       - key: MONGO_URI
         sync: false
+      - key: OCR_URL
+        sync: false
+      - key: OCR_API_KEY
+        sync: false
+      - key: OCR_ENGLISH_URL
+        sync: false
+      - key: OCR_ENGLISH_KEY
+        sync: false
+      - key: OCR_TIMEOUT_MS
+        value: 300000
