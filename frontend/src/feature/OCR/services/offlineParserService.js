@@ -3,37 +3,8 @@ export const parseDocumentOffline = async (file, mode = "bangla") => {
   const fileType = file.type || "application/octet-stream";
   const ext = fileName.split(".").pop()?.toLowerCase() || "";
   let text = "";
-  let detectedType = "Unknown File";
-  if (
-    fileType.startsWith("text/") ||
-    [
-      "txt",
-      "md",
-      "json",
-      "csv",
-      "py",
-      "js",
-      "ts",
-      "html",
-      "css",
-      "xml",
-    ].includes(ext)
-  ) {
-    text = await file.text();
-    detectedType = `${ext.toUpperCase()} Text File`;
-  } else if (
-    fileType.startsWith("image/") ||
-    ["png", "jpg", "jpeg", "webp", "gif", "bmp"].includes(ext)
-  ) {
-    text = `[Image Document: ${fileName}]\nFormat: ${fileType || ext}\nNote: Connect online to process image with ChandraOCR 2.`;
-    detectedType = "Image Document";
-  } else if (fileType.includes("pdf") || ext === "pdf") {
-    text = `[PDF Document: ${fileName}]\nNote: Connect online for full ChandraOCR 2 PDF textization.`;
-    detectedType = "PDF Document";
-  } else {
-    text = `[Binary Document: ${fileName}]\nFormat: ${fileType || ext}\nNote: Connect online for deep ChandraOCR 2 extraction.`;
-    detectedType = "Binary File";
-  }
+  const detectedType = "Handwritten Image";
+  text = `[Handwritten Image: ${fileName}]\nFormat: ${fileType || ext}\nNote: Connect online to process this image with ChandraOCR 2.`;
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
   const charCount = text.length;
   const lineCount = text ? text.split("\n").length : 0;
@@ -54,10 +25,6 @@ export const parseDocumentOffline = async (file, mode = "bangla") => {
       },
     ],
     full_extracted_text: text,
-    summary:
-      text.length > 0
-        ? `Offline extracted ${detectedType} (${wordCount} words, ${lineCount} lines).`
-        : "No text extracted.",
     confidence_score: "Medium (Offline Engine)",
   };
   return {
@@ -66,7 +33,6 @@ export const parseDocumentOffline = async (file, mode = "bangla") => {
     size: file.size,
     type: fileType || `application/${ext}`,
     extractedText: text,
-    summary: structuredData.summary,
     structuredData,
     rawJson: JSON.stringify(structuredData, null, 2),
     metadata: {

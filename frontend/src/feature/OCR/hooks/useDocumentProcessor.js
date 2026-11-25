@@ -34,7 +34,7 @@ export function useDocumentProcessor({ isOffline, onDocumentReady, mode = "bangl
         ) {
           textContent = await file.text();
         } else {
-          // Read base64 for images / PDFs / DOCX
+          // Read the handwritten image as base64.
           base64Data = await new Promise((resolve) => {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -56,10 +56,12 @@ export function useDocumentProcessor({ isOffline, onDocumentReady, mode = "bangl
           textContent,
           prompt:
             mode === "english"
-              ? "Extract all English text from this document. Preserve wording and paragraph structure."
-              : "Extract all Bangla text from this document. Preserve Bengali spelling and paragraph structure.",
+              ? "Extract all English handwritten text from this image. Preserve wording and paragraph structure."
+              : "Extract all Bangla handwritten text from this image. Preserve Bengali spelling and paragraph structure.",
         }, mode);
         if (ok && data.success) {
+          const structuredData = { ...(data.structuredData || {}) };
+          delete structuredData.summary;
           const doc = {
             id:
               "doc_" +
@@ -70,9 +72,8 @@ export function useDocumentProcessor({ isOffline, onDocumentReady, mode = "bangl
             size: file.size,
             type: file.type || "application/octet-stream",
             extractedText: data.extractedText,
-            summary: data.summary,
-            structuredData: data.structuredData,
-            rawJson: data.rawJson,
+            structuredData,
+            rawJson: JSON.stringify(structuredData, null, 2),
             metadata: data.metadata,
             modelUsed: data.modelUsed || "ChandraOCR 2",
             processedAt: new Date().toISOString(),

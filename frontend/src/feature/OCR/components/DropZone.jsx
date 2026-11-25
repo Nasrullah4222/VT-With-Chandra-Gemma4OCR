@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import { motion } from "motion/react";
 import {
   Upload,
-  FileText,
   Image as ImageIcon,
   Sparkles,
   AlertCircle,
@@ -38,6 +37,14 @@ export const DropZone = ({ onFileSelect, isProcessing, isOffline, mode = "bangla
     }
   };
   const validateAndProcess = (file) => {
+    const supportedImageTypes = ["image/png", "image/jpeg", "image/webp"];
+    const isSupportedImage = file.type
+      ? supportedImageTypes.includes(file.type.toLowerCase())
+      : /\.(png|jpe?g|webp)$/i.test(file.name);
+    if (!isSupportedImage) {
+      setErrorMsg("Please upload an image of handwritten text (PNG, JPG, or WEBP).");
+      return;
+    }
     // 50MB max file size
     if (file.size > 50 * 1024 * 1024) {
       setErrorMsg("File size exceeds 50MB limit.");
@@ -65,7 +72,7 @@ export const DropZone = ({ onFileSelect, isProcessing, isOffline, mode = "bangla
           type="file"
           className="hidden"
           onChange={handleFileChange}
-          accept="image/*,.pdf,.txt,.md,.json,.csv,.doc,.docx"
+          accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp"
         />
 
         <div className="flex flex-col items-center justify-center space-y-4">
@@ -81,21 +88,17 @@ export const DropZone = ({ onFileSelect, isProcessing, isOffline, mode = "bangla
           <div className="space-y-1">
             <h3 className="text-base font-semibold text-white tracking-wide">
               {mode === "english"
-                ? "Drop an English handwritten or printed document"
-                : "Drop a Bangla handwritten or printed document"}
+                ? "Upload an English handwritten image"
+                : "Upload a Bangla handwritten image"}
             </h3>
             <p className="text-xs text-zinc-400 max-w-sm font-mono">
-              Supports images (PNG, JPG, WEBP), PDFs, and files up to 50MB
+              Handwritten images only (PNG, JPG, WEBP), up to 50MB
             </p>
           </div>
 
           <div className="flex items-center gap-3 pt-2 text-[11px] font-mono text-zinc-400">
             <span className="flex items-center gap-1">
-              <ImageIcon className="w-3.5 h-3.5 text-indigo-400" /> Images
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1">
-              <FileText className="w-3.5 h-3.5 text-emerald-400" /> PDF / Notes
+              <ImageIcon className="w-3.5 h-3.5 text-indigo-400" /> Handwritten Image
             </span>
             <span>•</span>
             <span className="text-zinc-500">{mode === "english" ? "English OCR" : "Bangla OCR"}</span>

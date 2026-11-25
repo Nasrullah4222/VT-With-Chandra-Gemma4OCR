@@ -1,6 +1,10 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.DEV
+    ? "http://localhost:3000"
+    : "https://vt-with-chandra-gemma4ocr.onrender.com");
 /**
- * Sends a document to the backend for OCR/textization.
+ * Sends a handwritten image to the backend for OCR/textization.
  * Communicates with the Express backend at `${VITE_API_URL}/api/textize`.
  */
 export async function textizeDocument(payload, mode = "bangla") {

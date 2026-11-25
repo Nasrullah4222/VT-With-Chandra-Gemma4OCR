@@ -177,18 +177,6 @@ export const DocumentViewer = ({ doc, onClose, onReTextize }) => {
             Full Text
           </button>
 
-          {doc.summary && (
-            <button
-              onClick={() => setActiveTab("summary")}
-              className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${
-                activeTab === "summary"
-                  ? "bg-[#4F46E5] text-white shadow-xs"
-                  : "text-zinc-400 hover:text-white"
-              }`}
-            >
-              Summary
-            </button>
-          )}
         </div>
 
         {/* Stats Badges */}
@@ -323,18 +311,6 @@ export const DocumentViewer = ({ doc, onClose, onReTextize }) => {
             </div>
           )}
 
-          {/* Tab 4: Summary */}
-          {activeTab === "summary" && (
-            <div className="space-y-4 font-sans">
-              <div className="flex items-center gap-2 text-[#4F46E5] font-semibold text-sm font-mono">
-                <Sparkles className="w-4 h-4" />
-                <span>ChandraOCR 2 Executive Summary</span>
-              </div>
-              <p className="text-zinc-200 text-base leading-relaxed bg-[#4F46E5]/10 p-6 rounded-2xl border border-[#4F46E5]/20">
-                {doc.summary || "No summary generated for this document."}
-              </p>
-            </div>
-          )}
         </div>
       </main>
     </motion.div>

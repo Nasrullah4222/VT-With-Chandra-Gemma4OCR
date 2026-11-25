@@ -48,7 +48,7 @@ export const RecentDocsModal = ({
         <div className="flex-1 overflow-y-auto p-4 space-y-2">
           {docs.length === 0 ? (
             <div className="py-12 text-center text-zinc-500 font-mono text-xs">
-              No recent documents saved in history.
+              No handwritten images saved in history.
             </div>
           ) : (
             docs.map((doc) => (
@@ -84,7 +84,7 @@ export const RecentDocsModal = ({
                       onRemoveDoc(doc.id);
                     }}
                     className="p-1.5 rounded-lg text-zinc-500 hover:text-red-400 hover:bg-red-500/10 transition-colors opacity-0 group-hover:opacity-100"
-                    title="Delete document"
+                    title="Delete handwritten image"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
