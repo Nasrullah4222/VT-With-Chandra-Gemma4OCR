@@ -45,9 +45,9 @@ export const DropZone = ({ onFileSelect, isProcessing, isOffline, mode = "bangla
       setErrorMsg("Please upload an image of handwritten text (PNG, JPG, or WEBP).");
       return;
     }
-    // 50MB max file size
+    // 50MB max image size
     if (file.size > 50 * 1024 * 1024) {
-      setErrorMsg("File size exceeds 50MB limit.");
+      setErrorMsg("Image exceeds the 50MB limit.");
       return;
     }
     onFileSelect(file);

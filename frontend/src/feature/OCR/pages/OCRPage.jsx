@@ -33,7 +33,7 @@ const faqs = [
   {
     question: "Which image formats are supported?",
     answer:
-      "Upload a handwritten image in JPG, PNG, or WEBP format up to 50 MB. Phone photos work too, although bright, flat images usually produce the best results.",
+      "Upload an image of handwritten text in JPG, PNG, or WEBP format up to 50 MB. Use a clear, well-lit image with the writing fully in frame.",
   },
   {
     question: "Are my images private?",
